@@ -31,7 +31,7 @@ class FilePathInputComponent(customtkinter.CTkFrame):
             return
 
         directories = self.get_directories_from_root(root)
-        DirectoriesListComponent(self.master, directories).grid(row=1, column=0)
+        DirectoriesListComponent(self.master, directories, root).grid(row=1, column=0)
 
     def get_entry_value(self) -> str:
         return self.entry.get()

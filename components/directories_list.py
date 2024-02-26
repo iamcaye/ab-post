@@ -1,11 +1,13 @@
 import customtkinter
 from .image_list import ImageListComponent
 from os import listdir
+import os
 
 
 class DirectoriesListComponent(customtkinter.CTkScrollableFrame):
-    def __init__(self, app: customtkinter.CTk, directories: list[str]) -> None:
+    def __init__(self, app: customtkinter.CTk, directories: list[str], root:str) -> None:
         super().__init__(app)
+        self.root = root
         self.app = app
         self.directories = directories
         self.create_widgets()
@@ -18,7 +20,7 @@ class DirectoriesListComponent(customtkinter.CTkScrollableFrame):
             self.image_component.destroy()
 
         # get images from directory that ends with images file extension
-        files = [f"{directory}/{file}" for file in listdir(directory) if file.endswith((".jpg", ".jpeg", ".png"))]
+        files = [os.path.join(self.root, directory, file) for file in listdir(os.path.join(self.root, directory)) if file.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
         self.image_component = ImageListComponent(self.app, files)
         self.image_component.grid(row=1, column=2, padx=10, pady=10)

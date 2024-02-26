@@ -10,5 +10,5 @@ class ImageComponent(customtkinter.CTkLabel):
         else:
             img = raw_img
 
-        image = customtkinter.CTkImage(img, size=(img.width//2, img.height//2))
+        image = customtkinter.CTkImage(img, size=(img.width, img.height))
         super().__init__(master=None, image=image, text='')
